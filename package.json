@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/CorwinDickey/master-my-resume/issues"
   },
-  "homepage": "https://github.com/CorwinDickey/master-my-resume#readme"
+  "homepage": "https://github.com/CorwinDickey/master-my-resume#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.11.18"
+  }
 }
