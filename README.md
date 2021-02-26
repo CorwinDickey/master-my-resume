@@ -29,8 +29,7 @@ This is the second project for my General Assembly Software Engineering Immersiv
 - As a user, I want to be able to cancel the sign-up attempt if I need to (stretch goal)  
 - As a user, I want to be directed to the page showing me my resumes when I am done with sign-up (stretch goal)  
   
-#### Section View  
-- As a user, I want to see the places I can navigate  
+#### ![Section View](https://github.com/CorwinDickey/master-my-resume/tree/main/assets/wireframes/section-view-wireframe.JPG)  
 - As a user, I want to be able to select different pages  
 - As a user, I want to be able to add custom sections  
 - As a user, I want to be able to name my section  
