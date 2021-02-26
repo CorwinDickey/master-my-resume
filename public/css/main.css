@@ -1,9 +1,52 @@
+nav {
+    width: max(15vw, 160px)
+    ;position: fixed
+    ;top: 0px
+    ;bottom: 0px
+    ;left: 0px
+    ;background-color: royalblue
+}
+
+.item-cards {
+    display: grid
+    ;grid-template-columns: repeat(auto-fill, max(15vw, 160px))
+    ;column-gap: 1.5vw
+    ;row-gap: 1.5vw
+    ;padding-left: max(16vw, 160px)
+    ;max-width: 100%
+}
+
+.card {
+    display: flex
+    ;flex-direction: column
+    ;justify-content: space-evenly
+    ;width: max(15vw, 160px)
+    ;height: 20vw
+}
+
+.card p {
+    text-align: center
+    ;font-size: 2vw
+    ;margin: 0
+}
+
+.item {
+    background-color: #eeeeee
+    ;border: .25vw solid #999999
+    ;border-radius: 1vw
+    ;width: 15vw
+    ;height: 20vw
+}
+
 #add-item {
     background-color: lightgreen
     ;border: .25vw solid limegreen
     ;border-radius: 1vw
-    ;width: 15vw
-    ;height: 20vw
+}
+
+#add-item p {
+    color: limegreen
+    ;font-weight: bold
 }
 
 #add-item p {
@@ -14,10 +57,11 @@
     ;margin: 0
 }
 
-.item-card {
-    display: flex
-    ;flex-direction: column
-    ;justify-content: space-evenly
+
+#add-item {
+    background-color: lightgreen
+    ;border: .25vw solid limegreen
+    ;border-radius: 1vw
 }
 
 .circle {
@@ -31,7 +75,7 @@
 }
 
 .circle.plus {
-    border: .25vw solid limegreen !important
+    border: .25vw solid limegreen
 }
 .circle::before, .circle::after {
     content: ''
