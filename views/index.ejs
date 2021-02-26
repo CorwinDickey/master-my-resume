@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master My Resume</title>
+</head>
+<nav>
+    <%- include('./partials/nav.ejs') %>
+</nav>
+<body>
+    <div id="add-item" class="item-card">
+        <div class="circle plus"></div>
+        <p>ADD NEW RESUME</p>
+    </div>
+    <% for (let i = 0; i < resumes.length; i++) { %>
+        <div class="item-card">
+            <p class="company"><%= resumes[i].company %></p>
+            <p class="date"><%= resumes[i].date %></p>
+        </div>
+    <% } %>
+</body>
+</html>
