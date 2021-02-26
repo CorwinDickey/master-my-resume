@@ -10,15 +10,17 @@
     <%- include('./partials/nav.ejs') %>
 </nav>
 <body>
-    <div id="add-item" class="item-card">
-        <div class="circle plus"></div>
-        <p>ADD NEW RESUME</p>
-    </div>
-    <% for (let i = 0; i < resumes.length; i++) { %>
-        <div class="item-card">
-            <p class="company"><%= resumes[i].company %></p>
-            <p class="date"><%= resumes[i].date %></p>
+    <div class="item-cards">
+        <div id="add-item" class="card">
+            <div class="circle plus"></div>
+            <p>ADD NEW RESUME</p>
         </div>
-    <% } %>
+        <% for (let i = 0; i < resumes.length; i++) { %>
+            <div class="card item">
+                <p class="company"><%= resumes[i].company %></p>
+                <p class="date"><%= resumes[i].date %></p>
+            </div>
+        <% } %>
+    </div>
 </body>
 </html>
