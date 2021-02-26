@@ -17,6 +17,7 @@ const MONGODBURI = process.env.MONGODBURI
 // ==============================================================
 // CONTROLLERS
 // ==============================================================
+const sectionController = require('./controllers/section_controller.js')
 
 // ==============================================================
 // DATABASE CONFIGURATION
@@ -46,6 +47,8 @@ APP.use(session({
     ,resave: false
     ,saveUninitialized: false
 }))
+
+APP.use('/section', sectionController)
 
 // ==============================================================
 // LISTENER
