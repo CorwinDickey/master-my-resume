@@ -1,0 +1,54 @@
+#add-item {
+    background-color: lightgreen
+    ;border: .25vw solid limegreen
+    ;border-radius: 1vw
+    ;width: 15vw
+    ;height: 20vw
+}
+
+#add-item p {
+    text-align: center
+    ;color: limegreen
+    ;font-size: 2vw
+    ;font-weight: bold
+    ;margin: 0
+}
+
+.item-card {
+    display: flex
+    ;flex-direction: column
+    ;justify-content: space-evenly
+}
+
+.circle {
+    border: .25vw solid limegreen
+    ;position: relative
+    ;vertical-align: middle
+    ;margin: 0 auto
+    ;border-radius: 100%
+    ;width: 50%
+    ;padding-top: 50%
+}
+
+.circle.plus {
+    border: .25vw solid limegreen !important
+}
+.circle::before, .circle::after {
+    content: ''
+    ;position: absolute
+    ;top: 0
+    ;left: 0
+    ;right: 0
+    ;bottom: 0
+}
+.circle.plus::before, .circle.plus::after {
+    background:limegreen;
+}
+.circle.plus::before{
+    width: .6vw;
+    margin: 20% auto;
+}
+.circle.plus::after{
+    margin: auto 20%;
+    height: .6vw;
+}
