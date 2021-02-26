@@ -10,6 +10,7 @@ const userSchema = mongoose.Schema({
         type: String
         ,minLength: 8
     }
+    ,img: String
     ,fullName: String
     ,bio: String
     ,sections: Array
