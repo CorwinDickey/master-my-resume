@@ -1,0 +1,13 @@
+<div id="user-info">
+    <img id="user-image" src="<%= currentUser.img %>" alt="Image of <%= currentUser.name %>">
+    <p id="user-name"><%= currentUser.name %></p>
+</div>
+<div class="dividing-line"></div>
+<div id="sections">
+    <% let sections = currentUser.sections %> 
+    <% for (let i = 0; i < sections.length; i++) { %> 
+        <div class="section-link">
+            <a href="/profile/<%= sections[i].id %>"><%= sections[i].name %></a>
+        </div>
+    <% } %> 
+</div>
