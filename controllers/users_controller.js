@@ -1,10 +1,10 @@
 // ==============================================================
 // CONTROLLER CONFIGURATION
 // ==============================================================
+const bcrypt = require('bcrypt')
 const express = require('express')
 const ROUTER = express.Router()
 const User = require('../models/user_model.js')
-const bcrypt = require('bcrypt')
 
 // ==============================================================
 // ROUTES
@@ -19,6 +19,7 @@ ROUTER.get('/new', (req, res) => {
 ROUTER.post('/', (req, res) => {
     // create a new object with the user input (hash the password) and pass that to the database
     console.log('Received a user creation request')
+    console.log(req.body.password)
     let newUser = {
         email: req.body.email
         ,password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))
