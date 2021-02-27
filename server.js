@@ -17,7 +17,8 @@ const MONGODBURI = process.env.MONGODBURI
 // ==============================================================
 // CONTROLLERS
 // ==============================================================
-const sectionController = require('./controllers/section_controller.js')
+const sectionsController = require('./controllers/sections_controller.js')
+const usersController = require('./controllers/users_controller.js')
 
 // ==============================================================
 // DATABASE CONFIGURATION
@@ -42,13 +43,14 @@ mongoose.connection.once('open', () => {
 // ==============================================================
 APP.use(express.urlencoded({extended: true}))
 APP.use(methodOverride('_method'))
-APP.use(session({
-    secret: process.env.SECRET
-    ,resave: false
-    ,saveUninitialized: false
-}))
+// APP.use(session({
+//     secret: process.env.SECRET
+//     ,resave: false
+//     ,saveUninitialized: false
+// }))
 
-APP.use('/section', sectionController)
+APP.use('/section', sectionsController)
+APP.use('/user', usersController)
 
 // ==============================================================
 // LISTENER
