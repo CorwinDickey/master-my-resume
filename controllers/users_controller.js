@@ -4,6 +4,7 @@
 const express = require('express')
 const ROUTER = express.Router()
 const User = require('../models/user_model.js')
+const bcrypt = require('bcrypt')
 
 // ==============================================================
 // ROUTES
@@ -11,12 +12,22 @@ const User = require('../models/user_model.js')
 
 // add new user
 ROUTER.get('/new', (req, res) => {
-    res.send('Testing new user route')
+    res.render('users/new.ejs')
 })
 
 // create new user
 ROUTER.post('/', (req, res) => {
-    console.log('Received an user creation request')
+    // create a new object with the user input (hash the password) and pass that to the database
+    console.log('Received a user creation request')
+    let newUser = {
+        email: req.body.email
+        ,password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))
+    }
+
+    User.create(newUser, (err, createdUser) => {
+        console.log('user is created', createdUser)
+        res.redirect('/resumes')
+    })
 })
 
 // edit user
