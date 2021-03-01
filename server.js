@@ -11,7 +11,7 @@ require('dotenv').config()
 // APP CONFIGURATION
 // ==============================================================
 const APP = express()
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 3000
 const MONGODBURI = process.env.MONGODBURI
 
 // ==============================================================
@@ -51,6 +51,10 @@ APP.use(methodOverride('_method'))
 
 APP.use('/section', sectionsController)
 APP.use('/user', usersController)
+
+APP.get('/', (req, res) => {
+    res.send('Hello World!')
+})
 
 // ==============================================================
 // LISTENER
