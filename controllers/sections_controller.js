@@ -16,7 +16,13 @@ ROUTER.get('/new', (req, res) => {
 
 // create new item
 ROUTER.post('/', (req, res) => {
-    console.log('Received an item creation request')
+    Section.create(req.body, (error, createdSection) => {})
+})
+
+ROUTER.get('/:id', (req, res) => {
+    Section.findById(req.param.id, (error, foundSection) => {
+        res.send(foundSection.name)
+    })
 })
 
 // edit item

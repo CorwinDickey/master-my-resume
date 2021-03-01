@@ -11,11 +11,11 @@ const userSchema = mongoose.Schema({
         ,minLength: 8
         ,required: true
     }
-    ,img: String
-    ,fullName: String
-    ,bio: String
-    ,sections: Array
-    ,items: Array
+    ,img: {type: String, default: ''}
+    ,fullName: {type: String, default: ''}
+    ,bio: {type: String, default: ''}
+    ,sections: {type: Array, default: []}
+    ,items: {type: Array, default: []}
 })
 
 const User = mongoose.model('User', userSchema)
