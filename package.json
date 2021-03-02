@@ -1,6 +1,9 @@
 {
   "name": "master-my-resume",
   "version": "1.0.0",
+  "engines": {
+    "node": "15.9.0"
+  },
   "description": "This is the second project for my General Assembly Software Engineering Immersive course, and is my first full-stack CRUD application. The general purpose of the application is to provide a place for people to consolidate their resume and easily assemble different resumes to be submitted to for different applications. It uses the concept of a \"master resume\" as its inspiration.",
   "main": "server.js",
   "scripts": {
@@ -22,6 +25,7 @@
     "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "method-override": "^3.0.0",
     "mongoose": "^5.11.18"
   }

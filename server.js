@@ -4,6 +4,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
+const session = require('express-session')
 
 require('dotenv').config()
 
@@ -19,6 +20,7 @@ const MONGODBURI = process.env.MONGODBURI
 // ==============================================================
 const sectionsController = require('./controllers/sections_controller.js')
 const usersController = require('./controllers/users_controller.js')
+const sessionsController = require('./controllers/sessions_controller')
 
 // ==============================================================
 // DATABASE CONFIGURATION
@@ -43,18 +45,15 @@ mongoose.connection.once('open', () => {
 // ==============================================================
 APP.use(express.urlencoded({extended: true}))
 APP.use(methodOverride('_method'))
-// APP.use(session({
-//     secret: process.env.SECRET
-//     ,resave: false
-//     ,saveUninitialized: false
-// }))
+APP.use(session({
+    secret: process.env.SECRET
+    ,resave: false
+    ,saveUninitialized: false
+}))
 
 APP.use('/section', sectionsController)
 APP.use('/user', usersController)
-
-APP.get('/', (req, res) => {
-    res.send('Hello World!')
-})
+APP.use('/sessions', sessionsController)
 
 // ==============================================================
 // LISTENER
