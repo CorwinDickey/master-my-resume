@@ -1,0 +1,20 @@
+<ul>
+    <a href="#">
+        <div>
+            <img src="#" alt="#">
+            <p><%= currentUser.email %></p>
+        </div>
+    </a>
+    <% for (section of currentUser.sections) { %>
+        <a href="/section/<%= section.id %>">
+            <div class="<% if (section.name === 'Resumes') { %>
+                    <%= "resumes-link" %>
+                <% } else { %>
+                    <%= "section-link" %>
+                <% } %>
+            ">
+            <p><%= section.name %></p>
+            </div>
+        </a>
+    <% } %>
+</ul>
