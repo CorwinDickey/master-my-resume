@@ -6,7 +6,7 @@
         </div>
     </a>
     <% for (section of currentUser.sections) { %>
-        <a href="/section/<%= section.id %>">
+        <a href="/section/<%= section._id %>">
             <div class="<% if (section.name === 'Resumes') { %>
                     <%= "resumes-link" %>
                 <% } else { %>
