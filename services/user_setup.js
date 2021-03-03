@@ -1,3 +1,7 @@
+// ==============================================================
+// SERVICE CONFIGURATION
+// ==============================================================
+
 const User = require('../models/user_model.js')
 const Section = require('../models/section_model.js')
 
