@@ -19,9 +19,10 @@ ROUTER.post('/', (req, res) => {
     Section.create(req.body, (error, createdSection) => {})
 })
 
+// show section
 ROUTER.get('/:id', (req, res) => {
-    Section.findById(req.param.id, (error, foundSection) => {
-        res.send(foundSection.name)
+    res.render('section.ejs', {
+        currentUser: req.session.currentUser
     })
 })
 

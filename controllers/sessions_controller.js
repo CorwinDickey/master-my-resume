@@ -36,7 +36,7 @@ ROUTER.post('/', (req, res) => {
                 // add hte user to our current session
                 req.session.currentUser = foundUser
                 // redirect back to our home page
-                res.redirect('/user/new')
+                res.redirect('/section/resumes')
             } else {
                 // passwords do not match
                 res.send('<a href="/">invalid password</a>')
