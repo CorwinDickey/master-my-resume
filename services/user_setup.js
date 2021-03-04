@@ -86,6 +86,28 @@ const userSetup = {
             })
         })
     }
+
+    ,removeItemFromUser: function(itemObject) {
+        return new Promise ((resolve, reject) => {
+            User.findById(itemObject.user, (error, foundUser) => {
+                userItems = foundUser.items
+                itemIndex = userItems.indexOf(itemObject.id)
+                userItems.splice(itemIndex, 1)
+                resolve(foundUser.update({items: userItems}))
+            })
+        })
+    }
+
+    ,removeItemFromSection: function(itemObject) {
+        return new Promise ((resolve, reject) => {
+            Section.findById(itemObject.section, (error, foundSection) => {
+                sectionItems = foundSection.items
+                itemIndex = sectionItems.indexOf(itemObject.id)
+                sectionItems.splice(itemIndex, 1)
+                resolve(foundSection.update({items: sectionItems}))
+            })
+        })
+    }
     
     // add basic sections to a new user profile
     ,addNewUserSections: async function(userID) {

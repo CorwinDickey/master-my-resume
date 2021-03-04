@@ -21,6 +21,7 @@ const MONGODBURI = process.env.MONGODBURI
 const sectionsController = require('./controllers/sections_controller.js')
 const usersController = require('./controllers/users_controller.js')
 const sessionsController = require('./controllers/sessions_controller')
+const itemsController = require('./controllers/items_contoller.js')
 
 // ==============================================================
 // DATABASE CONFIGURATION
@@ -55,6 +56,7 @@ APP.use(session({
 APP.use('/section', sectionsController)
 APP.use('/user', usersController)
 APP.use('/session', sessionsController)
+APP.use('/section/:id/item', itemsController)
 
 // ==============================================================
 // LISTENER

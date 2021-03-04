@@ -12,7 +12,7 @@ const Item = require('../models/item_model.js')
 
 // add new section
 ROUTER.get('/new', (req, res) => {
-    res.send('Testing new item route')
+    res.send('Testing new section route')
 })
 
 // create new section
@@ -39,17 +39,17 @@ ROUTER.get('/:id', async (req, res) => {
 
 // edit section
 ROUTER.get('/:id/edit', (req, res) => {
-    res.send('Testing edit item route')
+    res.send('Testing edit section route')
 })
 
 // update section
 ROUTER.put('/:id', (req, res) => {
-    console.log('Received an item update request')
+    console.log('Received a section update request')
 })
 
 // delete section
 ROUTER.delete('/:id', (req, res) => {
-    console.log('Received an item delete request')
+    console.log('Received a section delete request')
 })
 
 // ==============================================================
