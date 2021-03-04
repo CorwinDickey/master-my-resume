@@ -74,6 +74,10 @@ ROUTER.delete('/item/:id', middleware.isAuthenticated, (req, res) => {
     })
 })
 
+ROUTER.get('/*', (req, res) => {
+    res.redirect('/index.ejs')
+})
+
 // ==============================================================
 // EXPORTER
 // ==============================================================

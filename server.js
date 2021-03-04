@@ -58,6 +58,10 @@ APP.use('/user', usersController)
 APP.use('/session', sessionsController)
 APP.use('/section/:id', itemsController)
 
+APP.get('/*', (req, res) => {
+    res.render('index.ejs')
+})
+
 // ==============================================================
 // LISTENER
 // ==============================================================
