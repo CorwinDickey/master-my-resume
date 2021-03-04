@@ -54,7 +54,8 @@ const appFunctions = {
 
     ,createItemInSection: async function (sectionID) {
         sectionObject = await Section.findById(sectionID, (error, foundSection) => {return foundSection})
-        appFunctions.createdItem(sectionObject)
+        // console.log('Found section for createItemInSection: ', sectionObject)
+        return await appFunctions.createItem(sectionObject)
     }
 
     ,createItem: function (sectionObject) {
@@ -68,7 +69,7 @@ const appFunctions = {
     }
 
     ,addItemToUser: function (itemObject) {
-        // console.log('Item object for addItemToUser: ', itemObject)
+        console.log('Item object for addItemToUser: ', itemObject)
         return new Promise ((resolve, reject) => {
             User.findById(itemObject.user, (error, foundUser) => {
                 // console.log('User found for addItemToUser: ', foundUser)

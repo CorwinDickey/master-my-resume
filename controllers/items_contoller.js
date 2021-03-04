@@ -6,7 +6,6 @@ const ROUTER = express.Router()
 const Item = require('../models/item_model.js')
 const Section = require('../models/section_model.js')
 const middleware = require('../services/middleware.js')
-const QueryString = require('query-string')
 
 // ==============================================================
 // ROUTES
@@ -15,12 +14,8 @@ const QueryString = require('query-string')
 // add new item
 ROUTER.get('/new/:id', middleware.isAuthenticated, async (req, res) => {
     let sectionID = req.params.id
-    console.log('Section ID: ', sectionID)
     let sectionObject = await Section.findById(sectionID, (error, foundSection) => {return foundSection})
-    // console.log('Section ID for finding section object: ', sectionID)
-    // console.log('Section for creating new item: ', sectionObject)
     let userSectionObjects = await Section.find({user: req.session.currentUser}, (error, userSections) => {return userSections})
-    console.log('User sections for Nav: ', userSectionObjects)
 
     res.render('items/new.ejs', {
         section: sectionObject
@@ -29,10 +24,13 @@ ROUTER.get('/new/:id', middleware.isAuthenticated, async (req, res) => {
 })
 
 // create new item
-ROUTER.post('/', (req, res) => {
-    Item.create(req.body, (error, createdItem) => {
-        res.redirect('back')
-    })
+ROUTER.post('/:id', async (req, res) => {
+    let itemObject = await middleware.appFunctions.createItemInSection(req.params.id)
+    console.log(itemObject)
+    await middleware.appFunctions.addItemToUser(itemObject)
+    await middleware.appFunctions.addItemToSection(itemObject)
+
+    res.redirect('../' + req.params.id)
 })
 
 // show item
