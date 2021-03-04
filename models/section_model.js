@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
 
-const sectionSchema = mongoose.Schema({
-    name: String
-    ,type: String
-    ,items: {type: Array, default: []}
+const sectionSchema = new mongoose.Schema({
+    user: {type: mongoose.Schema.Types.ObjectID, required: true}
     ,deletable: {type: Boolean, default: true}
-    ,owner: {type: mongoose.Schema.Types.ObjectID, required: true}
+    ,name: String
+    ,itemType: String
+    ,items: {type: [mongoose.Schema.Types.ObjectID]}
 })
 
 const Section = mongoose.model('Section', sectionSchema)

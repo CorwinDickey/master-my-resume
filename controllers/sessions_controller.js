@@ -22,7 +22,7 @@ ROUTER.post('/', (req, res) => {
     // Step 1, look for the username
     User.findOne({username: req.body.username}, (err, foundUser) => {
         // Database error
-        console.log(foundUser)
+        // console.log(foundUser)
         if (err) {
             console.log(err)
             res.send('oops, the db had a problem')
@@ -35,8 +35,10 @@ ROUTER.post('/', (req, res) => {
             if (bcrypt.compareSync(req.body.password, foundUser.password)) {
                 // add hte user to our current session
                 req.session.currentUser = foundUser
+                let routePage = foundUser.sections.find(section => section.name === 'Resumes')
+                // console.log(routePage._id)
                 // redirect back to our home page
-                res.redirect('/section/resumes')
+                res.redirect('/section/' + routePage._id)
             } else {
                 // passwords do not match
                 res.send('<a href="/">invalid password</a>')

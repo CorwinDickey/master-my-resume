@@ -12,8 +12,9 @@ nav {
     ;grid-template-columns: repeat(auto-fill, max(15vw, 160px))
     ;column-gap: 1.5vw
     ;row-gap: 1.5vw
-    ;padding-left: max(16vw, 160px)
+    ;padding-left: max(15vw, 160px)
     ;max-width: 100%
+    ;margin-left: 1vw
 }
 
 .card {
@@ -32,24 +33,23 @@ nav {
 
 .item {
     background-color: #eeeeee
+    ;justify-content: flex-end
     ;border: .25vw solid #999999
     ;border-radius: 1vw
-    ;width: 15vw
-    ;height: 20vw
 }
 
-#add-item {
-    background-color: lightgreen
+.add {
+    background-color: lightgreen !important
     ;border: .25vw solid limegreen
     ;border-radius: 1vw
 }
 
-#add-item p {
+.add p {
     color: limegreen
     ;font-weight: bold
 }
 
-#add-item p {
+.add p {
     text-align: center
     ;color: limegreen
     ;font-size: 2vw
@@ -57,10 +57,38 @@ nav {
     ;margin: 0
 }
 
-
-#add-item {
+.add {
     background-color: lightgreen
     ;border: .25vw solid limegreen
+    ;border-radius: 1vw
+}
+
+.info-container {
+    margin: 1vw
+}
+
+.buttons-container {
+    display: flex
+    ;flex-direction: column
+    ;height: calc(100%/3)
+    ;justify-content: space-evenly
+}
+
+.button {
+    width: 70%
+    ;height: auto
+    ;align-self: center
+    ;border-radius: 1vw
+    ;border: .1vw solid lightgray
+}
+
+.edit :hover {
+    background-color: lightgreen
+    ;border-radius: 1vw
+}
+
+.delete :hover {
+    background-color: coral
     ;border-radius: 1vw
 }
 
