@@ -47,6 +47,7 @@ mongoose.connection.once('open', () => {
 APP.use(express.urlencoded({extended: true}))
 APP.use(methodOverride('_method'))
 APP.use(express.static('public'))
+APP.use(express.cookieParser(process.env.SECRET))
 APP.use(session({
     secret: process.env.SECRET
     ,resave: false
