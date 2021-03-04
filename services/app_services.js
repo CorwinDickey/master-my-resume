@@ -6,7 +6,7 @@ const User = require('../models/user_model.js')
 const Section = require('../models/section_model.js')
 const Item = require('../models/item_model.js')
 
-const userSetup = {
+const appServices = {
     
     createUser: async function(userInfo) {
         // console.log(1, userInfo)
@@ -165,4 +165,4 @@ const userSetup = {
     }
 }
 
-module.exports = userSetup
+module.exports = appServices

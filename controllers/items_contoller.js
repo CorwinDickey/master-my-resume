@@ -4,7 +4,7 @@
 const express = require('express')
 const ROUTER = express.Router()
 const Item = require('../models/item_model.js')
-const UserServices = require('../services/user_setup.js')
+const UserServices = require('../services/app_services.js')
 
 // ==============================================================
 // ROUTES
