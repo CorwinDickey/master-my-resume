@@ -32,33 +32,10 @@ ROUTER.post('/', async (req, res) => {
     req.session.currentUser = newUserObject
     await UserServices.addNewUserSections(newUserObject.id)
     newUserID = newUserObject.id
-    // console.log(newUserID)
     let sectionObject = await Section.findOne({ user: newUserID, name: 'Resumes'})
-    // res.redirect('/user/' + newUserObject.id + '/UserSetup')
-    // let routePage = newUserObject.sections.find(section => section.name === 'Resumes')
-    // console.log(routePage._id)
-    // redirect back to our home page
-    // console.log('Section object for redirect: ', sectionObject)
-    // console.log('Section object ID for redirect: ', sectionObject._id)
+
     res.redirect('/section/' + sectionObject.id)
 })
-
-// setup user account
-// ROUTER.get('/:id/UserSetup', async (req, res) => {
-//     User.findByIdAndUpdate(req.params.id, 
-//         {
-//             $set:{
-//                 sections: await UserServices.addNewUserSections(req.params.id)
-//             }
-//         }, {new: true}, (error, newUser) => {
-//             // console.log(newUser)
-//             console.log('new user setup ===============================')
-//             res.redirect('/session/new')
-//         }
-//     )
-//     // console.log('new user sections added ===============================')
-//     // res.redirect('/user/new')
-// })
 
 // edit user
 ROUTER.get('/:id/edit', (req, res) => {

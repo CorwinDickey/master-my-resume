@@ -5,7 +5,7 @@
             <p><%= currentUser.email %></p>
         </div>
     </a>
-    <% for (section of currentUser.sections) { %>
+    <% for (section of userSections) { %>
         <a href="/section/<%= section._id %>">
             <div class="<% if (section.name === 'Resumes') { %>
                     <%= "resumes-link" %>

@@ -13,10 +13,10 @@
             <div class="circle plus"></div>
             <p>ADD NEW ITEM</p>
         </div>
-        <% for (sectionItem of section.items) { %>
+        <% for (sectionItem of sectionItems) { %>
             <div class="card item">
                 <div class="info-container">
-                    <p><%= sectionItem._id %> </p>
+                    <p><%= sectionItem.title %> </p>
                 </div>
                 <div class="buttons-container">
                     <form action="">

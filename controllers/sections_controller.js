@@ -4,6 +4,7 @@
 const express = require('express')
 const ROUTER = express.Router()
 const Section = require('../models/section_model.js')
+const Item = require('../models/item_model.js')
 
 // ==============================================================
 // ROUTES
@@ -21,14 +22,18 @@ ROUTER.post('/', (req, res) => {
 
 // show section
 ROUTER.get('/:id', async (req, res) => {
-    // let sections = req.session.currentUser.sections
-    // console.log(sections)
-    sectionID = req.params.id
-    // console.log(sectionID)
-    // console.log('Found section for show route: ', Section.findById(req.params.id, (error, foundSection) => {return foundSection}))
+    let section = await Section.findById(req.params.id, (error, foundSection) => {return foundSection})
+    let sectionItems = await Item.find(
+        {user: req.session.currentUser, section: section.id}
+        ,(error, sectionItems) => {return sectionItems}
+    )
+    let userSections = await Section.find({user: req.session.currentUser}, (error, userSections) => {return userSections})
+    
     res.render('section.ejs', {
         currentUser: req.session.currentUser
-        ,section: await Section.findById(req.params.id, (error, foundSection) => {return foundSection})
+        ,section: section
+        ,sectionItems: sectionItems
+        ,userSections: userSections
     })
 })
 

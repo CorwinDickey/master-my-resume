@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt')
 const express = require('express')
 const ROUTER = express.Router()
 const User = require('../models/user_model.js')
+const Section = require('../models/section_model.js')
 
 ROUTER.get('/new', (req, res) => {
     res.render('sessions/new.ejs', {currentUser: req.session.currentUser})
@@ -20,7 +21,7 @@ ROUTER.post('/', (req, res) => {
     // some weird thing happened???
 
     // Step 1, look for the username
-    User.findOne({username: req.body.username}, (err, foundUser) => {
+    User.findOne({username: req.body.username}, async (err, foundUser) => {
         // Database error
         // console.log(foundUser)
         if (err) {
@@ -35,10 +36,8 @@ ROUTER.post('/', (req, res) => {
             if (bcrypt.compareSync(req.body.password, foundUser.password)) {
                 // add hte user to our current session
                 req.session.currentUser = foundUser
-                let routePage = foundUser.sections.find(section => section.name === 'Resumes')
-                // console.log(routePage._id)
-                // redirect back to our home page
-                res.redirect('/section/' + routePage._id)
+                let sectionObject = await Section.findOne({ user: foundUser.id, name: 'Resumes'})
+                res.redirect('/section/' + sectionObject.id)
             } else {
                 // passwords do not match
                 res.send('<a href="/">invalid password</a>')
