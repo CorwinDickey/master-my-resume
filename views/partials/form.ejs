@@ -1,0 +1,39 @@
+<% switch(section.type) { 
+    case 'resume': %>
+
+<input type="text" name="company">
+<input type="text" name="position">
+<input type="date" name="date">
+<input type="text-area" name="notes">
+<% for (section of userSections) { %>
+    <input type="checkbox" name="<%= section.name %>">
+<% } %>
+
+
+<% break;
+    case 'startEndBlock': %>
+
+<input type="text" name="title">
+<input type="text" name="description">
+<input type="text" name="association">
+<input type="date" name="startDate">
+<input type="date" name="endDate">
+
+<% break;
+    case 'singleDateBlock': %>
+
+<input type="text" name="title">
+<input type="text" name="description">
+<input type="text" name="association">
+<input type="date" name="date">
+
+<% break;
+    case 'list': %>
+
+<input type="text" name="title">
+<input type="text" name="description">
+<input type="text" name="listItems">
+
+<% break;
+    default:
+    break; } %>

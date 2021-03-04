@@ -4,14 +4,14 @@
 const express = require('express')
 const ROUTER = express.Router()
 const Item = require('../models/item_model.js')
-const UserServices = require('../services/app_services.js')
+const middleware = require('../services/middleware.js')
 
 // ==============================================================
 // ROUTES
 // ==============================================================
 
 // add new item
-ROUTER.get('/new', (req, res) => {
+ROUTER.get('/new', middleware.isAuthenticated, (req, res) => {
     res.send('Testing new item route')
 })
 
@@ -36,11 +36,11 @@ ROUTER.put('/:id', (req, res) => {
 })
 
 // delete item
-ROUTER.delete('/:id', (req, res) => {
+ROUTER.delete('/:id', middleware.isAuthenticated, (req, res) => {
     console.log('Received an item delete request')
     Item.findById(req.params.id, async (error, foundItem) => {
-        await UserServices.removeItemFromUser(foundItem)
-        await UserServices.removeItemFromSection(foundItem)
+        await middleware.appFunctions.removeItemFromUser(foundItem)
+        await middleware.appFunctions.removeItemFromSection(foundItem)
     })
     Item.findByIdAndDelete(req.params.id, { useFindAndModify: false}, (error, data) => {
         res.redirect('back')

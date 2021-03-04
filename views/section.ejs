@@ -8,25 +8,20 @@
     <%- include ('./partials/nav.ejs') %>
 </nav>
 <body>
-    <div class="item-cards">
+    <div id="item-cards">
+        <a href="/section/<%= section.id %>/item/new"></a>
         <div class="card add">
-            <div class="circle plus"></div>
+            <div class="circle plus" onclick="middleware.userInterface.showModal('new-item-modal')"></div>
             <p>ADD NEW ITEM</p>
         </div>
         <% for (sectionItem of sectionItems) { %>
-            <div class="card item">
-                <div class="info-container">
-                    <p><%= sectionItem.title %> </p>
+            <a href="/section/<%= section.id %>/item/<%= item.id %>">
+                <div class="card item">
+                    <div id="info-container" onclick="let item = sectionItem">
+                        <p><%= sectionItem.title %> </p>
+                    </div>
                 </div>
-                <div class="buttons-container">
-                    <form action="">
-                        <input type="submit" value="EDIT">
-                    </form>
-                    <form action="/section/<%= section.id %>/item/<%= sectionItem._id %>?_method=DELETE" method="POST">
-                        <input type="submit" value="DELETE">
-                    </form>
-                </div>
-            </div>
+            </a>
         <% } %>
     </div>
 </body>
