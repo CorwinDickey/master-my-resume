@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Page</title>
+</head>
+<body>
+    <p>Company: <%= item.company %></p><br>
+    <p>Position: <%= item.position %></p><br>
+    <p>Date: <%= item.date %></p><br>
+    <p>Notes: <%= item.notes %></p><br>
+    <p>Title: <%= item.title %></p><br>
+    <p>Description: <%= item.description %></p><br>
+    <p>Association: <%= item.association %></p><br>
+    <p>Start Date: <%= item.startDate %></p><br>
+    <p>End Date: <%= item.endDate %></p><br>
+    <p>List Items: <%= item.listItems %></p><br>
+    <a href="/section/<%= item.section %>/item/<%= item.id %>/edit">EDIT</a>
+    <form action="/section/<%= item.section %>/item/<%= item.id %>?_method=DELETE" method="POST">
+        <input type="submit" value="DELETE">
+    </form>
+</body>
+</html>

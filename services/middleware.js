@@ -52,7 +52,12 @@ const appFunctions = {
         })
     }
 
-    ,createItem: function(sectionObject) {
+    ,createItemInSection: async function (sectionID) {
+        sectionObject = await Section.findById(sectionID, (error, foundSection) => {return foundSection})
+        appFunctions.createdItem(sectionObject)
+    }
+
+    ,createItem: function (sectionObject) {
         // console.log('Section for createItem: ', sectionObject)
         return new Promise((resolve, reject) => {
             Item.create({user: sectionObject.user, section: sectionObject.id, itemType: sectionObject.itemType}, (error, createdItem) => {
@@ -150,13 +155,13 @@ const appFunctions = {
         for (section of newUserSections) {
             // console.log('User ID for addNewUserSections: ', userID)
             // console.log('Section info 2: ', section)
-            let newSection = await userSetup.createSection(section)
-            await userSetup.addSectionToUser(newSection)
+            let newSection = await appFunctions.createSection(section)
+            await appFunctions.addSectionToUser(newSection)
             // console.log('New section: ', newSection)
-            let newItem = await userSetup.createItem(newSection)
+            let newItem = await appFunctions.createItem(newSection)
             // console.log('New item: ', newItem)
-            await userSetup.addItemToUser(newItem)
-            await userSetup.addItemToSection(newItem)
+            await appFunctions.addItemToUser(newItem)
+            await appFunctions.addItemToSection(newItem)
             // console.log(sectionID)
             // sectionsArray.push(newSection.id)
         }

@@ -1,39 +1,93 @@
-<% switch(section.type) { 
-    case 'resume': %>
+<% if (method === 'POST') { %>
+    <form action="/section/<%= section.id %>/item" method="POST">
+        <% switch(section.type) { 
+            case 'resume': %>
+        
+        <input type="text" name="company"><br>
+        <input type="text" name="position"><br>
+        <input type="date" name="date"><br>
+        <input type="text-area" name="notes"><br>
+        <% for (section of userSections) { %>
+            <input type="checkbox" name="<%= section.name %>"><br>
+        <% } %><br>
+        
+        
+        <% break;
+            case 'startEndBlock': %>
+        
+        <input type="text" name="title"><br>
+        <input type="text" name="description"><br>
+        <input type="text" name="association"><br>
+        <input type="date" name="startDate"><br>
+        <input type="date" name="endDate"><br>
+        
+        <% break;
+            case 'singleDateBlock': %>
+        
+        <input type="text" name="title"><br>
+        <input type="text" name="description"><br>
+        <input type="text" name="association"><br>
+        <input type="date" name="date"><br>
+        
+        <% break;
+            case 'list': %>
+        
+        <input type="text" name="title"><br>
+        <input type="text" name="description"><br>
+        <input type="text" name="listItems"><br>
+        
+        <% break;
+            default:
+            break; } %>
+        
+        <input type="submit" value="ADD NEW ITEM">
+    </form>
+<% } else { %>
+    <form action="/section/<%= section.id %>/item/<%= item.id %>?_method=PUT" method="POST">
+        <% switch(section.type) { 
+            case 'resume': %>
 
-<input type="text" name="company">
-<input type="text" name="position">
-<input type="date" name="date">
-<input type="text-area" name="notes">
-<% for (section of userSections) { %>
-    <input type="checkbox" name="<%= section.name %>">
+        <input type="text" name="company" value="<%= item.company %>"><br>
+        <input type="text" name="position" value="<%= item.position %>"><br>
+        <input type="date" name="date" value="<%= item.date %>"><br>
+        <input type="text-area" name="notes" value="<%= item.notes %>"><br>
+        <% for (section of userSections) { %>
+            <input type="checkbox" name="<%= section.name %>"
+                <% if (section.included === true) { %>
+                    checked
+                <% } %>
+            /><br>
+        <% } %><br>
+
+
+        <% break;
+            case 'startEndBlock': %>
+
+        <input type="text" name="title" value="<%= item.title %>"><br>
+        <input type="text" name="description" value="<%= item.description %>"><br>
+        <input type="text" name="association" value="<%= item.association %>"><br>
+        <input type="date" name="startDate" value="<%= item.startDate %>"><br>
+        <input type="date" name="endDate" value="<%= item.endDate %>"><br>
+
+        <% break;
+            case 'singleDateBlock': %>
+
+        <input type="text" name="title" value="<%= item.title %>"><br>
+        <input type="text" name="description" value="<%= item.description %>"><br>
+        <input type="text" name="association" value="<%= item.association %>"><br>
+        <input type="date" name="date" value="<%= item.date %>"><br>
+
+        <% break;
+            case 'list': %>
+
+        <input type="text" name="title" value="<%= item.title %>"><br>
+        <input type="text" name="description" value="<%= item.description %>"><br>
+        <input type="text" name="listItems" value="<%= item.listItems %>"><br>
+
+        <% break;
+            default:
+            break; } %>
+        
+        <input type="submit" value="EDIT ITEM">
+    </form>
 <% } %>
-
-
-<% break;
-    case 'startEndBlock': %>
-
-<input type="text" name="title">
-<input type="text" name="description">
-<input type="text" name="association">
-<input type="date" name="startDate">
-<input type="date" name="endDate">
-
-<% break;
-    case 'singleDateBlock': %>
-
-<input type="text" name="title">
-<input type="text" name="description">
-<input type="text" name="association">
-<input type="date" name="date">
-
-<% break;
-    case 'list': %>
-
-<input type="text" name="title">
-<input type="text" name="description">
-<input type="text" name="listItems">
-
-<% break;
-    default:
-    break; } %>

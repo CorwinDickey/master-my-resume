@@ -9,15 +9,18 @@
 </nav>
 <body>
     <div id="item-cards">
-        <a href="/section/<%= section.id %>/item/new"></a>
-        <div class="card add">
-            <div class="circle plus" onclick="middleware.userInterface.showModal('new-item-modal')"></div>
-            <p>ADD NEW ITEM</p>
-        </div>
+        <a href="/section/<%= section.id %>/new/<%= section.id %>">
+            <div class="card add">
+                <div class="circle plus"></div>
+                <p>ADD NEW ITEM</p>
+            </div>
+
+        </a>
+
         <% for (sectionItem of sectionItems) { %>
-            <a href="/section/<%= section.id %>/item/<%= item.id %>">
+            <a href="/section/<%= section.id %>/item/<%= sectionItem.id %>">
                 <div class="card item">
-                    <div id="info-container" onclick="let item = sectionItem">
+                    <div id="info-container">
                         <p><%= sectionItem.title %> </p>
                     </div>
                 </div>

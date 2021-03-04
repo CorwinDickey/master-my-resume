@@ -56,7 +56,7 @@ APP.use(session({
 APP.use('/section', sectionsController)
 APP.use('/user', usersController)
 APP.use('/session', sessionsController)
-APP.use('/section/:id/item', itemsController)
+APP.use('/section/:id', itemsController)
 
 // ==============================================================
 // LISTENER

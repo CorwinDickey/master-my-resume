@@ -6,7 +6,7 @@ const express = require('express')
 const Section = require('../models/section_model.js')
 const ROUTER = express.Router()
 const User = require('../models/user_model.js')
-const UserServices = require('../services/middleware.js')
+const Middleware = require('../services/middleware.js')
 // const { resolveInclude } = require('ejs')
 
 // ==============================================================
@@ -28,9 +28,9 @@ ROUTER.post('/', async (req, res) => {
     }
 
     // console.log(userInfo)
-    let newUserObject = await UserServices.createUser(userInfo)
+    let newUserObject = await Middleware.appFunctions.createUser(userInfo)
     req.session.currentUser = newUserObject
-    await UserServices.addNewUserSections(newUserObject.id)
+    await Middleware.appFunctions.addNewUserSections(newUserObject.id)
     newUserID = newUserObject.id
     let sectionObject = await Section.findOne({ user: newUserID, name: 'Resumes'})
 
