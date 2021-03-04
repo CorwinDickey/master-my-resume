@@ -5,6 +5,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 const session = require('express-session')
+const cookieParser = require('cookie-parser')
 
 require('dotenv').config()
 
@@ -47,7 +48,7 @@ mongoose.connection.once('open', () => {
 APP.use(express.urlencoded({extended: true}))
 APP.use(methodOverride('_method'))
 APP.use(express.static('public'))
-APP.use(express.cookieParser(process.env.SECRET))
+APP.use(cookieParser(process.env.SECRET))
 APP.use(session({
     secret: process.env.SECRET
     ,resave: false
