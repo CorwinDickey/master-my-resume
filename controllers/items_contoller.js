@@ -15,18 +15,18 @@ const middleware = require('../services/middleware.js')
 ROUTER.get('/new/:id', middleware.isAuthenticated, async (req, res) => {
     let sectionID = req.params.id
     let sectionObject = await Section.findById(sectionID, (error, foundSection) => {return foundSection})
-    let userSectionObjects = await Section.find({user: req.session.currentUser}, (error, userSections) => {return userSections})
+    // let userSectionObjects = await Section.find({user: req.session.currentUser}, (error, userSections) => {return userSections})
 
     res.render('items/new.ejs', {
         section: sectionObject
-        ,userSections: userSectionObjects
+        // ,userSections: userSectionObjects
     })
 })
 
 // create new item
 ROUTER.post('/:id', async (req, res) => {
     let itemObject = await middleware.appFunctions.createItemInSection(req.params.id)
-    console.log(itemObject)
+    // console.log(itemObject)
     await middleware.appFunctions.addItemToUser(itemObject)
     await middleware.appFunctions.addItemToSection(itemObject)
 
@@ -34,7 +34,7 @@ ROUTER.post('/:id', async (req, res) => {
 })
 
 // show item
-ROUTER.get('/item/:id', (req, res) => {
+ROUTER.get('/item/:id', middleware.isAuthenticated, (req, res) => {
     Item.findById(req.params.id, (error, foundItem) => {
         res.render('items/show.ejs', {
             item: foundItem
@@ -43,13 +43,21 @@ ROUTER.get('/item/:id', (req, res) => {
 })
 
 // edit item
-ROUTER.get('/:id/edit', (req, res) => {
-    res.send('Testing edit item route')
+ROUTER.get('/:id/edit', middleware.isAuthenticated, (req, res) => {
+    Item.findById(req.params.id, (error, foundItem) => {
+        console.log('Item found for edit route: ', foundItem)
+        res.render('items/edit.ejs', {
+            item: foundItem
+            ,method: 'PUT'
+        })
+    })
 })
 
 // update item
 ROUTER.put('/:id', (req, res) => {
-    console.log('Received an item update request')
+    Item.findByIdAndUpdate(req.params.id, req.body, {new: true}, (error, updatedItem) => {
+        res.redirect('../' + updatedItem.section)
+    })
 })
 
 // delete item

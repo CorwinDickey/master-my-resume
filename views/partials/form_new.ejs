@@ -13,7 +13,8 @@
         <input type="submit" value="ADD NEW ITEM">
     </form>
 <% } else { %>
-    <form action="/section/<%= section.id %>/<%= item.id %>?_method=PUT" method="POST">
+    <% console.log('Item found for edit form: ', item) %>
+    <form action="/section/<%= item.section %>/<%= item.id %>?_method=PUT" method="POST">
         Company Name: <input type="text" name="company" value="<%= item.company %>"><br>
         Position: <input type="text" name="position" value="<%= item.position %>"><br>
         Date: <input type="date" name="date" value="<%= item.date %>"><br>
