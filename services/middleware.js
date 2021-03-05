@@ -8,8 +8,8 @@ const Item = require('../models/item_model.js')
 
 const appFunctions = {
     
-    createUser: async function createUser(userInfo) {
-        return new Promise((resolve, reject) => {
+    createUser: function createUser(userInfo) {
+        return new Promise( async (resolve, reject) => {
             await User.create(userInfo, (error, createdUser) => {
                 if (error) {
                     console.log(error)
