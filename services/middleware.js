@@ -8,29 +8,19 @@ const Item = require('../models/item_model.js')
 
 const appFunctions = {
     
-    createUser: async function(userInfo) {
-        // console.log(1, userInfo)
-        function createUser(userInfo) {
-            // console.log(2, userInfo)
-            return new Promise((resolve, reject) => {
-                // console.log(3, userInfo)
-                User.create(userInfo, (error, createdUser) => {
-                    if (error) {
-                        console.log(error)
-                    }
-                    // console.log('Created user: ', createdUser)
-                    resolve(createdUser)
-                })
+    createUser: function createUser(userInfo) {
+        return new Promise((resolve, reject) => {
+            User.create(userInfo, (error, createdUser) => {
+                if (error) {
+                    console.log(error)
+                }
+                console.log('Created user: ', createdUser)
+                resolve(createdUser)
             })
-        }
-        // console.log('Test 1')
-        let newUserObject = await createUser(userInfo)
-        // console.log(newUserObject)
-        return newUserObject
+        })
     }
 
     ,createSection: function(sectionInfo) {
-        // console.log('Section info 1: ', sectionInfo)
         return new Promise((resolve, reject) => {
             Section.create(sectionInfo, (error, createdSection) => {
                 // console.log('Created section: ', createdSection)
@@ -52,13 +42,16 @@ const appFunctions = {
         })
     }
 
-    ,createItemInSection: async function (sectionID) {
+    ,createNewItem: async function (sectionID, itemData) {
         sectionObject = await Section.findById(sectionID, (error, foundSection) => {return foundSection})
         // console.log('Found section for createItemInSection: ', sectionObject)
-        return await appFunctions.createItem(sectionObject)
+        itemData.user = sectionObject.user
+        itemData.section = sectionObject.id
+        console.log('Item data: ', itemData)
+        return await Item.create(itemData)
     }
 
-    ,createItem: function (sectionObject) {
+    ,createNewUserItem: function (sectionObject) {
         // console.log('Section for createItem: ', sectionObject)
         return new Promise((resolve, reject) => {
             Item.create({user: sectionObject.user, section: sectionObject.id, itemType: sectionObject.itemType}, (error, createdItem) => {
@@ -116,7 +109,7 @@ const appFunctions = {
     }
     
     // add basic sections to a new user profile
-    ,addNewUserSections: async function(userID) {
+    ,setupNewUser: async function(userID) {
         const newUserSections = [
             {
                 name: 'Resumes'
@@ -159,7 +152,7 @@ const appFunctions = {
             let newSection = await appFunctions.createSection(section)
             await appFunctions.addSectionToUser(newSection)
             // console.log('New section: ', newSection)
-            let newItem = await appFunctions.createItem(newSection)
+            let newItem = await appFunctions.createNewUserItem(newSection)
             // console.log('New item: ', newItem)
             await appFunctions.addItemToUser(newItem)
             await appFunctions.addItemToSection(newItem)
@@ -209,7 +202,7 @@ const isAuthenticated = (req, res, next) => {
         next();
     } else {
         console.log('Unathenticated request');
-        res.redirect('/sessions/new');
+        res.redirect('/session/new');
     }
 }
 

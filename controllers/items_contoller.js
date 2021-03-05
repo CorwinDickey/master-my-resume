@@ -8,11 +8,16 @@ const Section = require('../models/section_model.js')
 const middleware = require('../services/middleware.js')
 
 // ==============================================================
+// MIDDLEWARE
+// ==============================================================
+ROUTER.use(middleware.isAuthenticated)
+
+// ==============================================================
 // ROUTES
 // ==============================================================
 
 // add new item
-ROUTER.get('/new/:id', middleware.isAuthenticated, async (req, res) => {
+ROUTER.get('/new/:id', async (req, res) => {
     let sectionID = req.params.id
     let sectionObject = await Section.findById(sectionID, (error, foundSection) => {return foundSection})
     // let userSectionObjects = await Section.find({user: req.session.currentUser}, (error, userSections) => {return userSections})
@@ -25,8 +30,8 @@ ROUTER.get('/new/:id', middleware.isAuthenticated, async (req, res) => {
 
 // create new item
 ROUTER.post('/:id', async (req, res) => {
-    let itemObject = await middleware.appFunctions.createItemInSection(req.params.id)
-    // console.log(itemObject)
+    let itemObject = await middleware.appFunctions.createNewItem(req.params.id, req.body)
+    console.log(itemObject)
     await middleware.appFunctions.addItemToUser(itemObject)
     await middleware.appFunctions.addItemToSection(itemObject)
 
@@ -34,7 +39,7 @@ ROUTER.post('/:id', async (req, res) => {
 })
 
 // show item
-ROUTER.get('/item/:id', middleware.isAuthenticated, (req, res) => {
+ROUTER.get('/item/:id', (req, res) => {
     Item.findById(req.params.id, (error, foundItem) => {
         res.render('items/show.ejs', {
             item: foundItem
@@ -43,7 +48,7 @@ ROUTER.get('/item/:id', middleware.isAuthenticated, (req, res) => {
 })
 
 // edit item
-ROUTER.get('/:id/edit', middleware.isAuthenticated, (req, res) => {
+ROUTER.get('/:id/edit', (req, res) => {
     Item.findById(req.params.id, (error, foundItem) => {
         console.log('Item found for edit route: ', foundItem)
         res.render('items/edit.ejs', {
@@ -61,7 +66,7 @@ ROUTER.put('/:id', (req, res) => {
 })
 
 // delete item
-ROUTER.delete('/item/:id', middleware.isAuthenticated, (req, res) => {
+ROUTER.delete('/item/:id', (req, res) => {
     console.log('Received an item delete request')
     let sectionID = ""
     Item.findById(req.params.id, async (error, foundItem) => {
@@ -72,10 +77,6 @@ ROUTER.delete('/item/:id', middleware.isAuthenticated, (req, res) => {
     Item.findByIdAndDelete(req.params.id, { useFindAndModify: false}, (error, data) => {
         res.redirect('../')
     })
-})
-
-ROUTER.get('/*', (req, res) => {
-    res.redirect('/index.ejs')
 })
 
 // ==============================================================

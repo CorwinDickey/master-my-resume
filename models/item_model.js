@@ -1,7 +1,8 @@
 const mongoose = require('mongoose')
+const session = require('express-session')
 
 const itemSchema = new mongoose.Schema({
-    user: {type: mongoose.Schema.Types.ObjectID, required: true}
+    user: {type: mongoose.Schema.Types.ObjectID, required: true, default: session.currentUser}
     ,section: {type: mongoose.Schema.Types.ObjectID, required: true}
     ,itemType: {type: String}
     ,position: {type: String}

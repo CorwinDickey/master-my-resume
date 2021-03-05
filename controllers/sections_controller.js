@@ -8,11 +8,16 @@ const Item = require('../models/item_model.js')
 const { isAuthenticated } = require('../services/middleware.js')
 
 // ==============================================================
+// MIDDLEWARE
+// ==============================================================
+ROUTER.use(isAuthenticated)
+
+// ==============================================================
 // ROUTES
 // ==============================================================
 
 // add new section
-ROUTER.get('/new', isAuthenticated, (req, res) => {
+ROUTER.get('/new', (req, res) => {
     res.send('Testing new section route')
 })
 
@@ -22,7 +27,7 @@ ROUTER.post('/', (req, res) => {
 })
 
 // show section
-ROUTER.get('/:id', isAuthenticated, async (req, res) => {
+ROUTER.get('/:id', async (req, res) => {
     let section = await Section.findById(req.params.id, (error, foundSection) => {return foundSection})
     let sectionItems = await Item.find(
         {user: req.session.currentUser, section: section.id}
@@ -39,7 +44,7 @@ ROUTER.get('/:id', isAuthenticated, async (req, res) => {
 })
 
 // edit section
-ROUTER.get('/:id/edit', isAuthenticated, (req, res) => {
+ROUTER.get('/:id/edit', (req, res) => {
     res.send('Testing edit section route')
 })
 
@@ -49,7 +54,7 @@ ROUTER.put('/:id', (req, res) => {
 })
 
 // delete section
-ROUTER.delete('/:id', isAuthenticated, (req, res) => {
+ROUTER.delete('/:id', (req, res) => {
     console.log('Received a section delete request')
 })
 

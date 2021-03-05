@@ -6,8 +6,7 @@ const express = require('express')
 const Section = require('../models/section_model.js')
 const ROUTER = express.Router()
 const User = require('../models/user_model.js')
-const Middleware = require('../services/middleware.js')
-// const { resolveInclude } = require('ejs')
+const middleware = require('../services/middleware.js')
 
 // ==============================================================
 // ROUTES
@@ -27,10 +26,11 @@ ROUTER.post('/', async (req, res) => {
         ,password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))
     }
 
-    // console.log(userInfo)
-    let newUserObject = await Middleware.appFunctions.createUser(userInfo)
+    console.log('User info to create user object: ', userInfo)
+    let newUserObject = await middleware.appFunctions.createUser(userInfo)
+    console.log('New user object: ', newUserObject)
     req.session.currentUser = newUserObject
-    await Middleware.appFunctions.addNewUserSections(newUserObject.id)
+    await middleware.appFunctions.addNewUserSections(newUserObject.id)
     newUserID = newUserObject.id
     let sectionObject = await Section.findOne({ user: newUserID, name: 'Resumes'})
 

@@ -9,20 +9,15 @@
 </nav>
 <body>
     <div id="item-cards">
-        <a href="/section/<%= section.id %>/new/<%= section.id %>">
-            <div class="card add">
-                <div class="circle plus"></div>
-                <p>ADD NEW ITEM</p>
-            </div>
-
+        <a class="card add" href="/section/<%= section.id %>/new/<%= section.id %>">
+            <div class="circle plus"></div>
+            <p>ADD NEW ITEM</p>
         </a>
 
         <% for (sectionItem of sectionItems) { %>
-            <a href="/section/<%= section.id %>/item/<%= sectionItem.id %>">
-                <div class="card item">
-                    <div id="info-container">
-                        <p><%= sectionItem.title %> </p>
-                    </div>
+            <a class="card item" href="/section/<%= section.id %>/item/<%= sectionItem.id %>">
+                <div id="info-container">
+                    <p><%= sectionItem.title %> </p>
                 </div>
             </a>
         <% } %>
