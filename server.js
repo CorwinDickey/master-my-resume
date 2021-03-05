@@ -14,7 +14,7 @@ require('dotenv').config()
 // ==============================================================
 const APP = express()
 const PORT = process.env.PORT || 3000
-const MONGODBURI = process.env.MONGODBURI
+const MONGODBURI = process.env.MONGODBURI || 'mongodb://localhost:27017/' + 'master_my_resume'
 
 // ==============================================================
 // CONTROLLERS
