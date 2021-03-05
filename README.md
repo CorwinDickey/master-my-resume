@@ -18,6 +18,11 @@ This is the second project for my General Assembly Software Engineering Immersiv
 ![html5](https://img.shields.io/badge/-HTML5-e34f26?style=flat-square&logo=html5&logoColor=white)
 ![css3](https://img.shields.io/badge/-CSS3-0307fc?style=flat-square&logo=css3&logoColor=white)  
 
+## Future Developments  
+- Allow creation of new sections.  
+- Allow creation of resume items.  
+- Creation of resume PDFs.
+- Customization of resume layouts.
   
 ## User Stories  
 #### Login Page  
@@ -42,7 +47,7 @@ This is the second project for my General Assembly Software Engineering Immersiv
 - As a user, I want to cancel out of new item creation  
 - As a user, I want to be able to select section items  
   
-#### Block Item View  
+#### ![Block Item View](https://github.com/CorwinDickey/master-my-resume/tree/main/assets/wireframes/block-item-view-wireframe.JPG)
 - As a user, I want to see the title of my item  
 - As a user, I want to see the pertinent details of my item  
 - As a user, I want to be able to delete items  
