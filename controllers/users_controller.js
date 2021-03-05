@@ -30,7 +30,7 @@ ROUTER.post('/', async (req, res) => {
     let newUserObject = await middleware.appFunctions.createUser(userInfo)
     console.log('New user object: ', newUserObject)
     req.session.currentUser = newUserObject
-    await middleware.appFunctions.addNewUserSections(newUserObject.id)
+    await middleware.appFunctions.setupNewUser(newUserObject.id)
     newUserID = newUserObject.id
     let sectionObject = await Section.findOne({ user: newUserID, name: 'Resumes'})
 

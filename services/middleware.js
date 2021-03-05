@@ -9,6 +9,7 @@ const Item = require('../models/item_model.js')
 const appFunctions = {
     
     createUser: function createUser(userInfo) {
+        console.log(userInfo)
         return new Promise( async (resolve, reject) => {
             await User.create(userInfo, (error, createdUser) => {
                 if (error) {
