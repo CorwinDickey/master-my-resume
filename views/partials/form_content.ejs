@@ -1,0 +1,28 @@
+<% if (!item) {console.log("testing")} %>
+
+<% if (type === 'resume') { %>
+    Company Name: <input type="text" name="company" value="<%= item.company %>"><br>
+    Position: <input type="text" name="position" value="<%= item.position %>"><br>
+    Date: <input type="date" name="date" value="<%= item.date %>"><br>
+    Notes: <input type="textarea" name="notes" value="<%= item.notes %>"><br>
+<% } else if (type === 'startEndBlock') { %>
+    Title: <input type="text" name="title" value="<%= item.title %>"><br>
+    Description: <input type="textarea" name="description" value="<%= item.description %>"><br>
+    Start Date: <input type="date" name="startDate" value="<%= item.startDate %>"><br>
+    End Date: <input type="date" name="endDate" value="<%= item.startDate %>"><br>
+<% } else if (type === 'singleDateBlock') { %>
+    Title: <input type="text" name="title" value="<%= item.title %>"><br>
+    Description: <input type="textarea" name="description" value="<%= item.description %>"><br>
+    Association: <input type="text" name="association" value="<%= item.association %>"><br>
+    Date: <input type="date" name="date" value="<%= item.date %>"><br>
+<% } else { %>
+    Company Name: <input type="text" name="company" value="<%= item.company %>"><br>
+    Position: <input type="text" name="position" value="<%= item.position %>"><br>
+    Date: <input type="date" name="date" value="<%= item.date %>"><br>
+    Notes: <input type="textarea" name="notes" value="<%= item.notes %>"><br>
+    Title: <input type="text" name="title" value="<%= item.title %>"><br>
+    Description: <input type="textarea" name="description" value="<%= item.description %>"><br>
+    Association: <input type="text" name="association" value="<%= item.association %>"><br>
+    Start Date: <input type="date" name="startDate" value="<%= item.startDate %>"><br>
+    End Date: <input type="date" name="endDate" value="<%= item.endDate %>"><br>
+<% } %>

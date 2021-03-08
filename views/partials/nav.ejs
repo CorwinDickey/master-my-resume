@@ -6,15 +6,8 @@
         </div>
     </a>
     <% for (section of userSections) { %>
-        <a class="nav-link" href="/section/<%= section._id %>">
-            <div class="<% if (section.name === 'Resumes') { %>
-                    <%= "resumes-link" %>
-                <% } else { %>
-                    <%= "section-link" %>
-                <% } %>
-            ">
-            <p><%= section.name %></p>
-            </div>
+        <a href="/section/<%= section._id %>" class="nav-link">
+            <span><%= section.name %></span>
         </a>
     <% } %>
     <form action="/session?_method=DELETE" method="POST">

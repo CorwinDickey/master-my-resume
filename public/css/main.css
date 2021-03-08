@@ -1,10 +1,96 @@
+:root {
+    --yale-blue: #054A91
+    ;--steel-blue: #3E7CB1
+    ;--iceburg: #81A4CD
+    ;--alice-blue: #DBE4EE
+    ;--heat-wave: #F17300
+    ;
+}
+
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+/* ================================================================================
+STYLING FOR FORMS AND INPUT TYPES
+=================================================================================*/
+
+form {
+    width: 80%
+}
+
+
+input {
+    width: 100%
+    ;padding: 8px 14px
+    ;margin: 8px 0
+    ;display: inline-block
+    ;border: 1px solid var(--steel-blue)
+    ;border-radius: 5px
+    ;box-sizing: border-box
+    ;font-size: max(1.5vw, 15px)
+}
+
+input:focus {
+    outline: none
+    ;box-shadow: 0 0 5px var(--heat-wave)
+}
+
+input[type=textarea], select {
+    width: 100%
+}
+
+input[type=submit] {
+    background-color: var(--alice-blue)
+    ;color: var(--yale-blue)
+    ;font-size: max(1.5vw, 10px)
+    ;border: none
+    ;border-radius: 5px
+    ;cursor: pointer
+    ;padding: 10px 0
+    ;box-shadow: 0 0 2px var(--yale-blue)
+}
+
+input[type=submit]:hover {
+    background-color: var(--heat-wave)
+    ;color: white
+}
+
+.form-container {
+    display: flex
+    ;flex-direction: column
+    ;justify-content: center
+    ;align-items: center
+    ;position: fixed
+    ;top: 25%
+    ;left: 50%
+    ;margin-left: min(-23vw, -150px)
+    ;margin-top: min(-16.5vw, -150px)
+    ;width: max(45vw, 300px)
+    ;height: auto
+    ;border-radius: 10px
+    ;box-shadow: 0px 0px 3px var(--iceburg)
+    ;font-size: max(2vw, 15px)
+    ;padding: 3vw 0
+}
+
+#index {
+    display: flex
+    ;justify-content: center
+    ;align-items: center
+}
+
+/* ================================================================================
+STYLING FOR NAV BAR
+=================================================================================*/
+
 nav {
     width: max(15vw, 160px)
     ;position: fixed
     ;top: 0px
     ;bottom: 0px
     ;left: 0px
-    ;background-color: aliceblue
+    ;background-color: var(--alice-blue)
 }
 
 #nav-container {
@@ -21,28 +107,20 @@ nav {
 }
 
 .nav-link {
-    text-decoration: none
-    ;margin: 5px 0
+    display: flex
+    ;justify-content: center
+    ;align-items: center
+    ;text-decoration: none
+    ;padding: 10px 0
+    ;margin: 8px 0
     ;width: 100%
-    ;font-size: 1.75vw
-    ;text-align: center
-    ;height: 5vw
+    ;font-size: max(1.5vw, 20px)
+    ;background-color: var(--steel-blue)
+    ;color: white
 }
 
-.nav-link p {
-    margin: 0
-}
-
-.resumes-link {
-    background-color: coral
-    ;width: 100%
-    ;height: 5vw
-}
-
-.section-link {
-    background-color: aqua
-    ;width: 100%
-    ;height: 5vw
+.nav-link:hover {
+    background-color: var(--heat-wave)
 }
 
 /* .modal {
@@ -73,6 +151,11 @@ nav {
     ;box-shadow: 0 2px 2px rgba(0, 0, 0, .2)
 } */
 
+.display {
+    user-select: none
+    ;pointer-events: none
+}
+
 #item-cards {
     display: grid
     ;grid-template-columns: repeat(auto-fill, max(15vw, 160px))
@@ -85,49 +168,29 @@ nav {
 
 .card {
     display: flex
+    ;background-color: var(--alice-blue)
     ;flex-direction: column
     ;justify-content: space-evenly
     ;width: max(15vw, 160px)
-    ;height: 20vw
+    ;height: max(20vw, 220px)
     ;text-decoration: none
+    ;border: .25vw solid var(--steel-blue)
+    ;border-radius: 5px
+    ;color: var(--steel-blue)
+    ;font-size: max(1.5vw, 20px)
+}
+
+.card:hover {
+    background-color: white
+    ;border-color: var(--heat-wave)
+    ;color: var(--heat-wave)
 }
 
 .card p {
     text-align: center
-    ;font-size: 2vw
-    ;margin: 0
-}
-
-.item {
-    background-color: #eeeeee
-    ;justify-content: flex-end
-    ;border: .25vw solid #999999
-    ;border-radius: 1vw
-}
-
-.add {
-    background-color: lightgreen !important
-    ;border: .25vw solid limegreen
-    ;border-radius: 1vw
-}
-
-.add p {
-    color: limegreen
-    ;font-weight: bold
-}
-
-.add p {
-    text-align: center
-    ;color: limegreen
-    ;font-size: 2vw
+    /* ;color: var(--iceburg) */
     ;font-weight: bold
     ;margin: 0
-}
-
-.add {
-    background-color: lightgreen
-    ;border: .25vw solid limegreen
-    ;border-radius: 1vw
 }
 
 #info-container {
@@ -135,8 +198,7 @@ nav {
 }
 
 .circle {
-    border: .25vw solid limegreen
-    ;position: relative
+    position: relative
     ;vertical-align: middle
     ;margin: 0 auto
     ;border-radius: 100%
@@ -145,8 +207,13 @@ nav {
 }
 
 .circle.plus {
-    border: .25vw solid limegreen
+    border: .25vw solid var(--steel-blue)
 }
+
+.card:hover > .circle.plus {
+    border-color: var(--heat-wave)
+}
+
 .circle::before, .circle::after {
     content: ''
     ;position: absolute
@@ -156,12 +223,18 @@ nav {
     ;bottom: 0
 }
 .circle.plus::before, .circle.plus::after {
-    background:limegreen;
+    background: var(--steel-blue);
 }
+
+.card:hover > .circle.plus::before, .card:hover > .circle.plus::after {
+    background: var(--heat-wave);
+}
+
 .circle.plus::before{
     width: .6vw;
     margin: 20% auto;
 }
+
 .circle.plus::after{
     margin: auto 20%;
     height: .6vw;

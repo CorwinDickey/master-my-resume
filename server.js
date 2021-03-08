@@ -14,7 +14,8 @@ require('dotenv').config()
 // ==============================================================
 const APP = express()
 const PORT = process.env.PORT || 3000
-const MONGODBURI = process.env.MONGODBURI || 'mongodb://localhost:27017/' + 'master_my_resume'
+const DB_NAME = 'master_my_resume'
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/' + DB_NAME
 
 // ==============================================================
 // CONTROLLERS
@@ -28,19 +29,20 @@ const itemsController = require('./controllers/items_contoller.js')
 // DATABASE CONFIGURATION
 // ==============================================================
 mongoose.connect(
-    MONGODBURI,
+    MONGODB_URI,
     {
         useNewUrlParser: true
         ,useFindAndModify: false
         ,useUnifiedTopology: true
     }
     ,() => {
-        console.log('the connection with mongod is established at:', MONGODBURI)
+        console.log('the connection with mongod is established at:', MONGODB_URI)
     }
 )
 mongoose.connection.once('open', () => {
     console.log('connected to mongo')
 })
+mongoose.connection.on('error', error => {console.log(error)})
 
 // ==============================================================
 // MIDDLEWARE

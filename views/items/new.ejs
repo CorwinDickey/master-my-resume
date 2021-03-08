@@ -5,6 +5,6 @@
     <title>New Item</title>
 </head>
 <body>
-    <%- include ('../partials/form_new.ejs', {method: 'POST'}) %> 
+    <%- include ('../partials/form_action.ejs', {method: 'POST', type: section.itemType, item: {}}) %> 
 </body>
 </html>

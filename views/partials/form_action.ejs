@@ -1,0 +1,26 @@
+<div class="form-container">
+    <% if (method === 'POST') { %>
+        <form action="/section/<%= section.id %>/<%= section.id %>" method="POST">    
+            <%- include ('./form_content.ejs', {type: type}) %> 
+
+            <input type="submit" value="Add New Item">
+        </form>
+    <% } else if (method === 'SHOW') { %>
+        <form class="display">
+            <%- include ('./form_content.ejs', {item: item}) %> 
+        </form>
+        <form action="/section/<%= item.section %>/<%= item.id %>/edit">
+            <input type="submit" value="Edit">
+        </form>
+        <form action="/section/<%= item.section %>/item/<%= item.id %>?_method=DELETE" method="POST">
+            <input type="submit" value="Delete">
+        </form>
+    <% } else { %> 
+        <form action="/section/<%= item.section %>/<%= item.id %>?_method=PUT" method="POST">
+            <% console.log(item.type) %>
+            <%- include ('./form_content.ejs', {item: item, type: item.type}) %> 
+            <input type="submit" value="Edit Item">
+        </form>
+    <% } %>
+</div>
+
